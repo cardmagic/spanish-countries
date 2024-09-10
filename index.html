@@ -99,6 +99,10 @@
             } else {
                 button.classList.remove('bg-blue-500', 'hover:bg-blue-700')
                 button.classList.add('bg-red-500')
+                // Vibrate for 500ms if the browser supports it
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(500);
+                }
                 setTimeout(() => {
                     button.classList.remove('bg-red-500')
                     button.classList.add('bg-blue-500', 'hover:bg-blue-700')
