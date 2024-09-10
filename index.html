@@ -163,10 +163,14 @@
                 .join(', ');
 
             const accuracy = totalQuestions > 0 ? ((correctAnswers / totalQuestions) * 100).toFixed(2) : 0;
+            
+            // Get the current day of the week
+            const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const dayOfWeek = daysOfWeek[new Date().getDay()];
 
             const message = sortedIncorrectList.length > 0 
-                ? `Questions Answered: ${totalQuestions}, Accuracy: ${accuracy}%, Incorrectly answered countries: ${sortedIncorrectList}`
-                : `Questions Answered: ${totalQuestions}, Accuracy: ${accuracy}%, No countries were answered incorrectly!`;
+                ? `${dayOfWeek} Questions Answered: ${totalQuestions}, Accuracy: ${accuracy}%, Incorrectly answered countries: ${sortedIncorrectList}`
+                : `${dayOfWeek} Questions Answered: ${totalQuestions}, Accuracy: ${accuracy}%, No countries were answered incorrectly!`;
 
             fetch('https://ntfy.sh/spanish-countries', {
                 method: 'POST',
