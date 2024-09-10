@@ -90,7 +90,20 @@
             const correctCountry = countries[randomCountryIndex]
             const correctCapital = correctCountry.capital
 
-            questionElement.textContent = `What is the capital of ${correctCountry.name}?`
+            // Clear previous content
+            questionElement.innerHTML = ''
+            
+            // Create a container for the GIF
+            const gifContainer = document.createElement('div')
+            gifContainer.id = 'gif-container'
+            gifContainer.className = 'mb-4'
+            questionElement.appendChild(gifContainer)
+
+            // Add the question text
+            const questionText = document.createElement('div')
+            questionText.textContent = `What is the capital of ${correctCountry.name}?`
+            questionText.className = 'text-xl'
+            questionElement.appendChild(questionText)
 
             const options = new Set()
             options.add(correctCapital)
@@ -201,13 +214,14 @@
             const gifElement = document.createElement('img');
             gifElement.src = randomGif.url;
             gifElement.alt = randomGif.alt;
-            gifElement.className = 'w-full h-auto mt-4 rounded';
+            gifElement.className = 'w-full h-auto rounded';
             
-            const container = document.getElementById('quiz-container');
-            container.appendChild(gifElement);
+            const gifContainer = document.getElementById('gif-container');
+            gifContainer.innerHTML = ''; // Clear previous GIF
+            gifContainer.appendChild(gifElement);
             
             setTimeout(() => {
-                container.removeChild(gifElement);
+                gifContainer.innerHTML = ''; // Remove the GIF after 3 seconds
             }, 3000);
         }
 
