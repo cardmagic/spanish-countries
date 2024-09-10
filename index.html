@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Capital Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded shadow-md w-96">
+        <h1 class="text-2xl font-bold mb-4 text-center">Country Capital Quiz</h1>
+        <div id="quiz-container">
+            <div id="question" class="text-xl mb-4"></div>
+            <div id="options" class="space-y-2"></div>
+            <div id="score" class="mt-4 text-center text-lg font-semibold"></div>
+        </div>
+    </div>
+
+    <script>
+        const countries = [
+            { name: "Argentina", capital: "Buenos Aires" },
+            { name: "Bolivia", capital: "La Paz" },
+            { name: "Chile", capital: "Santiago" },
+            { name: "Colombia", capital: "Bogotá" },
+            { name: "Costa Rica", capital: "San José" },
+            { name: "Cuba", capital: "Havana" },
+            { name: "Dominican Republic", capital: "Santo Domingo" },
+            { name: "Ecuador", capital: "Quito" },
+            { name: "El Salvador", capital: "San Salvador" },
+            { name: "Equatorial Guinea", capital: "Oyala" },
+            { name: "Guatemala", capital: "Guatemala City" },
+            { name: "Honduras", capital: "Tegucigalpa" },
+            { name: "Mexico", capital: "Mexico City" },
+            { name: "Nicaragua", capital: "Managua" },
+            { name: "Panama", capital: "Panama City" },
+            { name: "Paraguay", capital: "Asunción" },
+            { name: "Peru", capital: "Lima" },
+            { name: "Spain", capital: "Madrid" },
+            { name: "Uruguay", capital: "Montevideo" },
+            { name: "Venezuela", capital: "Caracas" }
+        ]
+
+        const questionElement = document.getElementById('question')
+        const optionsElement = document.getElementById('options')
+        const scoreElement = document.getElementById('score')
+
+        let totalQuestions = 0
+        let correctAnswers = 0
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max)
+        }
+
+        function generateQuiz() {
+            const randomCountryIndex = getRandomInt(countries.length)
+            const correctCountry = countries[randomCountryIndex]
+            const correctCapital = correctCountry.capital
+
+            questionElement.textContent = `What is the capital of ${correctCountry.name}?`
+
+            const options = new Set()
+            options.add(correctCapital)
+
+            while (options.size < 5) {
+                const randomOption = countries[getRandomInt(countries.length)].capital
+                options.add(randomOption)
+            }
+
+            const optionsArray = Array.from(options).sort(() => Math.random() - 0.5)
+            optionsElement.innerHTML = ''
+
+            optionsArray.forEach(option => {
+                const button = document.createElement('button')
+                button.textContent = option
+                button.className = 'w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700'
+                button.addEventListener('click', () => handleOptionClick(button, option, correctCapital))
+                optionsElement.appendChild(button)
+            })
+
+            updateScore()
+        }
+
+        function handleOptionClick(button, selectedOption, correctOption) {
+            totalQuestions++
+            if (selectedOption === correctOption) {
+                correctAnswers++
+                button.classList.add('bg-green-500')
+                setTimeout(() => {
+                    button.classList.remove('bg-green-500')
+                    generateQuiz()
+                }, 1000)
+            } else {
+                button.classList.add('bg-red-500')
+                setTimeout(() => {
+                    button.classList.remove('bg-red-500')
+                    button.disabled = true
+                }, 1000)
+            }
+            updateScore()
+        }
+
+        function updateScore() {
+            const percentage = totalQuestions > 0 ? ((correctAnswers / totalQuestions) * 100).toFixed(2) : 0
+            scoreElement.textContent = `Questions Answered: ${totalQuestions}, Correct: ${correctAnswers}, Accuracy: ${percentage}%`
+        }
+
+        generateQuiz()
+    </script>
+</body>
+</html>
+
