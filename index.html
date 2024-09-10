@@ -66,17 +66,31 @@
         let congratulatoryGifs = []
         let currentQuestionAttempts = 0 // New variable to track attempts for current question
 
+        const congratulatoryMessages = [
+            "Congratulations",
+            "Way to go",
+            "Nice job",
+            "You did it",
+            "Awesome",
+            "Great job",
+            "You rock",
+            "High five",
+            "You nailed it"
+        ];
+
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
         }
 
         function fetchCongratulatoryGifs() {
-            return fetch('https://api.giphy.com/v1/gifs/search?api_key=cPGAZEnhuSGQ9iKlFKvfuAQPmozexHRh&q=congratulations&limit=50')
+            const randomMessage = congratulatoryMessages[Math.floor(Math.random() * congratulatoryMessages.length)];
+            const encodedMessage = encodeURIComponent(randomMessage);
+            return fetch(`https://api.giphy.com/v1/gifs/search?api_key=cPGAZEnhuSGQ9iKlFKvfuAQPmozexHRh&q=${encodedMessage}&limit=50`)
                 .then(response => response.json())
                 .then(data => {
                     congratulatoryGifs = data.data.map(gif => ({
                         url: gif.images.original.url,
-                        alt: gif.alt_text || 'Congratulatory GIF'
+                        alt: gif.alt_text || `${randomMessage} GIF`
                     }));
                 })
                 .catch(error => {
