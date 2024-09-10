@@ -9,6 +9,16 @@
         .hidden {
             display: none;
         }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
     </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
@@ -51,6 +61,7 @@
 
         let totalQuestions = 0
         let correctAnswers = 0
+        let incorrectCountries = {}
 
         function getRandomInt(max) {
             return Math.floor(Math.random() * max)
@@ -94,22 +105,49 @@
                 setTimeout(() => {
                     button.classList.remove('bg-green-500')
                     button.classList.add('bg-blue-500', 'hover:bg-blue-700')
+                    if (correctAnswers === 20) {
+                        sendIncorrectCountries()
+                    }
                     generateQuiz()
                 }, 1000)
             } else {
+                const incorrectCountry = countries.find(country => country.capital === correctOption)
+                if (incorrectCountry) {
+                    incorrectCountries[incorrectCountry.name] = (incorrectCountries[incorrectCountry.name] || 0) + 1
+                }
                 button.classList.remove('bg-blue-500', 'hover:bg-blue-700')
-                button.classList.add('bg-red-500')
+                button.classList.add('bg-red-500', 'shake')
                 // Vibrate for 500ms if the browser supports it
                 if ('vibrate' in navigator) {
                     navigator.vibrate(500);
                 }
                 setTimeout(() => {
-                    button.classList.remove('bg-red-500')
+                    button.classList.remove('bg-red-500', 'shake')
                     button.classList.add('bg-blue-500', 'hover:bg-blue-700')
                     button.disabled = true
                 }, 1000)
             }
             updateScore()
+        }
+
+        function sendIncorrectCountries() {
+            const incorrectList = Object.entries(incorrectCountries)
+                .map(([country, count]) => `${country} (${count})`)
+                .join(', ');
+
+            const message = incorrectList.length > 0 
+                ? `Incorrectly answered countries: ${incorrectList}`
+                : 'No countries were answered incorrectly!';
+
+            fetch('https://ntfy.sh/spanish-countries', {
+                method: 'POST',
+                body: message
+            }).then(() => {
+                console.log('Incorrect countries list sent successfully');
+                incorrectCountries = {}; // Reset the dictionary after sending
+            }).catch(error => {
+                console.error('Error sending incorrect countries list:', error);
+            });
         }
 
         function updateScore() {
