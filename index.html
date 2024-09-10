@@ -66,6 +66,10 @@
 
         let congratulatoryGifs = [];
 
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
         function fetchCongratulatoryGifs() {
             return fetch('https://api.giphy.com/v1/gifs/search?api_key=cPGAZEnhuSGQ9iKlFKvfuAQPmozexHRh&q=congratulations&limit=50')
                 .then(response => response.json())
