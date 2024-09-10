@@ -131,12 +131,13 @@
         }
 
         function sendIncorrectCountries() {
-            const incorrectList = Object.entries(incorrectCountries)
+            const sortedIncorrectList = Object.entries(incorrectCountries)
+                .sort((a, b) => b[1] - a[1])  // Sort by count in descending order
                 .map(([country, count]) => `${country} (${count})`)
                 .join(', ');
 
-            const message = incorrectList.length > 0 
-                ? `Incorrectly answered countries: ${incorrectList}`
+            const message = sortedIncorrectList.length > 0 
+                ? `Incorrectly answered countries: ${sortedIncorrectList}`
                 : 'No countries were answered incorrectly!';
 
             fetch('https://ntfy.sh/spanish-countries', {
