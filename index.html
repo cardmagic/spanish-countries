@@ -62,6 +62,7 @@
         let totalQuestions = 0
         let correctAnswers = 0
         let incorrectCountries = {}
+        let hintShown = false; // New variable to track if hint has been shown
 
         function getRandomInt(max) {
             return Math.floor(Math.random() * max)
@@ -93,6 +94,8 @@
                 optionsElement.appendChild(button)
             })
 
+            hintShown = false; // Reset hintShown for each new question
+
             // Add a hint button
             const hintButton = document.createElement('button')
             hintButton.textContent = 'Show Hint'
@@ -104,10 +107,13 @@
         }
 
         function showHint(mnemonic) {
-            const hintElement = document.createElement('p')
-            hintElement.textContent = mnemonic
-            hintElement.className = 'mt-2 text-sm text-gray-600 italic'
-            optionsElement.appendChild(hintElement)
+            if (!hintShown) {
+                const hintElement = document.createElement('p')
+                hintElement.textContent = mnemonic
+                hintElement.className = 'mt-2 text-sm text-gray-600 italic'
+                optionsElement.appendChild(hintElement)
+                hintShown = true;
+            }
         }
 
         function handleOptionClick(button, selectedOption, correctOption) {
@@ -156,18 +162,20 @@
                 .map(([country, count]) => `${country} (${count})`)
                 .join(', ');
 
+            const accuracy = totalQuestions > 0 ? ((correctAnswers / totalQuestions) * 100).toFixed(2) : 0;
+
             const message = sortedIncorrectList.length > 0 
-                ? `Incorrectly answered countries: ${sortedIncorrectList}`
-                : 'No countries were answered incorrectly!';
+                ? `Questions Answered: ${totalQuestions}, Accuracy: ${accuracy}%, Incorrectly answered countries: ${sortedIncorrectList}`
+                : `Questions Answered: ${totalQuestions}, Accuracy: ${accuracy}%, No countries were answered incorrectly!`;
 
             fetch('https://ntfy.sh/spanish-countries', {
                 method: 'POST',
                 body: message
             }).then(() => {
-                console.log('Incorrect countries list sent successfully');
+                console.log('Quiz results sent successfully');
                 incorrectCountries = {}; // Reset the dictionary after sending
             }).catch(error => {
-                console.error('Error sending incorrect countries list:', error);
+                console.error('Error sending quiz results:', error);
             });
         }
 
