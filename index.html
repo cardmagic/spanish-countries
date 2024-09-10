@@ -33,26 +33,26 @@
 
     <script>
         const countries = [
-            { name: "Argentina", capital: "Buenos Aires" },
-            { name: "Bolivia", capital: "La Paz" },
-            { name: "Chile", capital: "Santiago" },
-            { name: "Colombia", capital: "Bogotá" },
-            { name: "Costa Rica", capital: "San José" },
-            { name: "Cuba", capital: "Havana" },
-            { name: "Dominican Republic", capital: "Santo Domingo" },
-            { name: "Ecuador", capital: "Quito" },
-            { name: "El Salvador", capital: "San Salvador" },
-            { name: "Equatorial Guinea", capital: "Oyala" },
-            { name: "Guatemala", capital: "Guatemala City" },
-            { name: "Honduras", capital: "Tegucigalpa" },
-            { name: "Mexico", capital: "Mexico City" },
-            { name: "Nicaragua", capital: "Managua" },
-            { name: "Panama", capital: "Panama City" },
-            { name: "Paraguay", capital: "Asunción" },
-            { name: "Peru", capital: "Lima" },
-            { name: "Spain", capital: "Madrid" },
-            { name: "Uruguay", capital: "Montevideo" },
-            { name: "Venezuela", capital: "Caracas" }
+            { name: "Argentina", capital: "Buenos Aires", mnemonic: "Argent-tina: Picture a shiny silver (argent) teacup (tina) filled with good air (Buenos Aires)" },
+            { name: "Bolivia", capital: "La Paz", mnemonic: "BOLIVia: Imagine a bowl (BOL) full of pez candy (La Paz)" },
+            { name: "Chile", capital: "Santiago", mnemonic: "CHILe: Visualize a Saint with Iago (the bird from Aladdin) eating a chile (CHILE) pepper (Santiago)" },
+            { name: "Colombia", capital: "Bogotá", mnemonic: "CoLOMbia: Picture a giant lollipop (lom) with a bow and arrow (Bogotá) stuck in it" },
+            { name: "Costa Rica", capital: "San José", mnemonic: "Costa Rica: Imagine a coffee costa (coast) where a rich (Rica) man named San José is surfing" },
+            { name: "Cuba", capital: "Havana", mnemonic: "CUba: Picture a Cuban cigar shaped like the letter U, with 'Havana' written on it" },
+            { name: "Dominican Republic", capital: "Santo Domingo", mnemonic: "Dominican: Imagine a domino with a halo (Santo) falling on a Sunday (Domingo)" },
+            { name: "Ecuador", capital: "Quito", mnemonic: "ECUAdor: Visualize an equator line with a mosquito (Quito) buzzing around it" },
+            { name: "El Salvador", capital: "San Salvador", mnemonic: "El Salvador: Picture a savior (Salvador) saving a salad (sal) from falling off a table" },
+            { name: "Equatorial Guinea", capital: "Oyala", mnemonic: "Equatorial Guinea: Imagine a guinea pig balancing on the equator line, yelling 'Oh ya la!'" },
+            { name: "Guatemala", capital: "Guatemala City", mnemonic: "Guatemala: Picture a guava-flavored mala (bad) drink transforming an entire city" },
+            { name: "Honduras", capital: "Tegucigalpa", mnemonic: "Honduras: Visualize hundreds of galloping horses (Tegucigalpa) running through Honduras" },
+            { name: "Mexico", capital: "Mexico City", mnemonic: "Mexico: Imagine a giant taco saying 'Mexi-can!' to a whole city" },
+            { name: "Nicaragua", capital: "Managua", mnemonic: "Nicaragua: Picture a knight named Cara (Nica-ra-gua) managing (Managua) a water park" },
+            { name: "Panama", capital: "Panama City", mnemonic: "Panama: Visualize a giant pan-shaped hat (Panama) covering an entire city" },
+            { name: "Paraguay", capital: "Asunción", mnemonic: "Paraguay: Imagine a pair of guys assuming (Asunción) they're lost in Paraguay" },
+            { name: "Peru", capital: "Lima", mnemonic: "Peru: Picture a kangaroo (Peru) jumping over a giant lime (Lima)" },
+            { name: "Spain", capital: "Madrid", mnemonic: "Spain: Visualize a spinning pain (Spain) turning into a smiling mad rid(er) on a bull" },
+            { name: "Uruguay", capital: "Montevideo", mnemonic: "Uruguay: Imagine you're a guy (Uru-guy) watching a monte (mountain) video in Montevideo" },
+            { name: "Venezuela", capital: "Caracas", mnemonic: "Venezuela: Picture a venezia (Venice) full of cars honking 'Caracas! Caracas!'" }
         ]
 
         const questionElement = document.getElementById('question')
@@ -93,7 +93,21 @@
                 optionsElement.appendChild(button)
             })
 
+            // Add a hint button
+            const hintButton = document.createElement('button')
+            hintButton.textContent = 'Show Hint'
+            hintButton.className = 'w-full py-2 px-4 bg-yellow-500 text-white rounded hover:bg-yellow-700 mt-2'
+            hintButton.addEventListener('click', () => showHint(correctCountry.mnemonic))
+            optionsElement.appendChild(hintButton)
+
             updateScore()
+        }
+
+        function showHint(mnemonic) {
+            const hintElement = document.createElement('p')
+            hintElement.textContent = mnemonic
+            hintElement.className = 'mt-2 text-sm text-gray-600 italic'
+            optionsElement.appendChild(hintElement)
         }
 
         function handleOptionClick(button, selectedOption, correctOption) {
@@ -126,6 +140,12 @@
                     button.classList.add('bg-blue-500', 'hover:bg-blue-700')
                     button.disabled = true
                 }, 1000)
+
+                // Show the mnemonic after an incorrect answer
+                const correctCountry = countries.find(country => country.capital === correctOption)
+                if (correctCountry) {
+                    showHint(correctCountry.mnemonic)
+                }
             }
             updateScore()
         }
