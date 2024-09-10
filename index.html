@@ -89,15 +89,19 @@
             totalQuestions++
             if (selectedOption === correctOption) {
                 correctAnswers++
+                button.classList.remove('bg-blue-500', 'hover:bg-blue-700')
                 button.classList.add('bg-green-500')
                 setTimeout(() => {
                     button.classList.remove('bg-green-500')
+                    button.classList.add('bg-blue-500', 'hover:bg-blue-700')
                     generateQuiz()
                 }, 1000)
             } else {
+                button.classList.remove('bg-blue-500', 'hover:bg-blue-700')
                 button.classList.add('bg-red-500')
                 setTimeout(() => {
                     button.classList.remove('bg-red-500')
+                    button.classList.add('bg-blue-500', 'hover:bg-blue-700')
                     button.disabled = true
                 }, 1000)
             }
