@@ -139,6 +139,7 @@
 
         function showHint(mnemonic) {
             if (!hintShown) {
+                currentQuestionAttempts++; // Increment attempts when hint is shown
                 const hintElement = document.createElement('p')
                 hintElement.textContent = mnemonic
                 hintElement.className = 'mt-2 text-sm text-gray-600 italic'
