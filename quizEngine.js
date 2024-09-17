@@ -2,6 +2,7 @@ import { generateCapitalsQuiz } from "./countries.js";
 import { generateNumbersQuiz } from "./numbers.js";
 import { generatePhrasesQuiz } from "./phrases.js";
 import { generateWordsQuiz } from "./words.js"; // Add this line
+import { generateSeptWeek3Quiz } from "./septWeek3.js";
 import { currentTab } from "./application.js";
 
 let totalQuestions = 0;
@@ -184,7 +185,7 @@ function handleOptionClick(
 
     const hint = getHint(correctOption);
     if (hint) {
-      showHint(hint);
+      showHint(`Mnemonic: ${hint}`);
     }
   }
   updateScore();
@@ -227,6 +228,9 @@ function generateQuiz() {
   resetQuestionAttempts();
   createOrGetGifContainer(); // Ensure the gif container exists
   switch (currentTab) {
+    case "septWeek3":
+      generateSeptWeek3Quiz();
+      break;
     case "capitals":
       generateCapitalsQuiz();
       break;

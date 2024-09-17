@@ -3,8 +3,9 @@ import { generateNumbersQuiz } from "./numbers.js";
 import { generatePhrasesQuiz } from "./phrases.js";
 import { generateWordsQuiz } from "./words.js";
 import { generateQuiz, initializeElements } from "./quizEngine.js";
+import { generateSeptWeek3Quiz } from "./septWeek3.js";
 
-let currentTab = "capitals";
+let currentTab = "septWeek3"; // Change the default tab
 
 function switchTab(tab) {
   currentTab = tab;
@@ -34,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
       switchTab(e.target.getAttribute("data-tab"));
     });
   });
+
+  // Set the initial active tab
+  switchTab(currentTab);
 });
 
 export { currentTab, switchTab };
