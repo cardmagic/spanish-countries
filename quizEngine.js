@@ -152,7 +152,7 @@ function handleOptionClick(
     updateScore();
     setTimeout(() => {
       generateQuiz();
-    }, 700);
+    }, 1300);
   } else {
     button.classList.add("bg-red-500");
     button.classList.add("shake");
