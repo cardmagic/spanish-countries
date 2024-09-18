@@ -9,6 +9,12 @@ body {
         linear-gradient(-45deg, transparent 75%, #75522D 75%);
     background-size: 32px 32px;
     background-position: 0 0, 0 16px, 16px -16px, -16px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-size: 18px; /* Increased base font size */
 }
 
 .container {
@@ -17,37 +23,54 @@ body {
     box-shadow: inset 0 0 0 3px #000000, 0 0 10px rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 0;
+    max-width: 48rem; /* Added max-width for better responsiveness */
+    width: 90%; /* Allow some flexibility for smaller screens */
 }
+
 h1 {
     text-shadow: 2px 2px #000000;
+    font-size: 2.5rem; /* Increased heading size */
 }
-select, button {
+
+#question {
+    font-size: 1.5rem; /* Increased question font size */
+}
+
+select, button, .option-button {
     font-family: 'VT323', monospace;
     background-color: #8b8b8b;
     border: 2px solid #545454;
     color: #ffffff;
     text-shadow: 1px 1px #000000;
     cursor: pointer;
+    font-size: 1.2rem; /* Increased font size for interactive elements */
 }
+
 select:hover, button:hover {
     background-color: #a8a8a8;
 }
+
 .option-button {
     background-color: #5c5c5c;
     border: 2px solid #424242;
 }
+
 .option-button:hover {
     background-color: #6e6e6e;
 }
+
 #score {
     background-color: #4a4a4a;
     border: 2px solid #363636;
     padding: 10px;
     margin-top: 20px;
+    font-size: 1.3rem; /* Increased score font size */
 }
+
 .hidden {
     display: none;
 }
+
 @keyframes shake {
     0% { transform: translateX(0); }
     25% { transform: translateX(-5px); }
@@ -55,9 +78,11 @@ select:hover, button:hover {
     75% { transform: translateX(-5px); }
     100% { transform: translateX(0); }
 }
+
 .shake {
     animation: shake 0.5s ease-in-out;
 }
+
 .w-192 {
     width: 48rem;
 }
