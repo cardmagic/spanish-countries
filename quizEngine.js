@@ -159,7 +159,7 @@ function handleOptionClick(
 
     setTimeout(() => {
       button.classList.remove("bg-green-500");
-      button.classList.add("bg-blue-500", "hover:bg-blue-700");
+      button.classList.add("bg-gray-500", "hover:bg-gray-700");
       if (correctAnswers % 20 === 0) {
         sendIncorrectAnswers(category);
       }
