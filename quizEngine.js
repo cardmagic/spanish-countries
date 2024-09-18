@@ -155,15 +155,21 @@ function handleOptionClick(
     }, 2000);
   } else {
     button.classList.add("bg-red-500");
+    button.classList.add("shake");
     // Update incorrect answers count
     incorrectAnswers[currentTab] = incorrectAnswers[currentTab] || {};
     incorrectAnswers[currentTab][correctAnswer] =
       (incorrectAnswers[currentTab][correctAnswer] || 0) + 1;
 
-    // Remove the red background after a short delay
+    // Disable all buttons during the shake animation
+    const allButtons = optionsElement.querySelectorAll("button");
+    allButtons.forEach((btn) => (btn.disabled = true));
+
+    // Remove the red background and shake class, and re-enable buttons after the animation
     setTimeout(() => {
-      button.classList.remove("bg-red-500");
-    }, 500);
+      button.classList.remove("bg-red-500", "shake");
+      allButtons.forEach((btn) => (btn.disabled = false));
+    }, 700);
   }
 }
 
