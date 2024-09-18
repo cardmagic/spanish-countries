@@ -25,6 +25,7 @@ body {
     border-radius: 0;
     max-width: 48rem; /* Added max-width for better responsiveness */
     width: 90%; /* Allow some flexibility for smaller screens */
+    position: relative; /* Add this line */
 }
 
 h1 {
@@ -109,4 +110,10 @@ select:hover, button:hover {
 #show-hint-button, .show-hint-button {
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+#quiz-selector {
+    font-size: 0.9rem;
+    padding: 5px;
+    width: auto;
 }

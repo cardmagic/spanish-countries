@@ -9,10 +9,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="flex items-center justify-center h-screen">
-    <div class="container w-192">
-        <h1 class="text-2xl font-bold mb-4 text-center">Spanish Quiz</h1>
-        <div class="mb-4">
-            <select id="quiz-selector" class="w-full p-2 rounded">
+    <div class="container w-192 relative">
+        <div class="absolute top-4 right-4">
+            <select id="quiz-selector" class="p-2 rounded">
                 <option value="septWeek3">Sept Week 3</option>
                 <option value="capitals">Capitals</option>
                 <option value="numbers">Numbers</option>
@@ -20,6 +19,7 @@
                 <option value="words">Words</option>
             </select>
         </div>
+        <h1 class="text-2xl font-bold mb-4 text-center">Spanish Quiz</h1>
         <div id="quiz-container">
             <div id="question" class="text-xl mb-4"></div>
             <div id="options" class="space-y-2"></div>
