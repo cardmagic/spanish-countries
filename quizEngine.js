@@ -137,7 +137,7 @@ function updateScore() {
   scoreElement.textContent = `Questions Answered: ${totalQuestions}, Correct: ${correctAnswers}, Accuracy: ${percentage}%`;
 }
 
-export function handleOptionClick(
+function handleOptionClick(
   button,
   selectedAnswer,
   correctAnswer,
@@ -149,9 +149,8 @@ export function handleOptionClick(
 
   if (selectedAnswer === correctAnswer) {
     button.classList.add("bg-green-500");
-    score++;
-    playCorrectSound();
-    showGif("correct");
+    correctAnswers++;
+    showCongratulatoryGif();
   } else {
     button.classList.add("bg-red-500");
     const correctButton = Array.from(options).find(
@@ -160,23 +159,16 @@ export function handleOptionClick(
     if (correctButton) {
       correctButton.classList.add("bg-green-500");
     }
-    playIncorrectSound();
-    showGif("incorrect");
+    // Update incorrect answers count
+    incorrectAnswers[currentTab] = incorrectAnswers[currentTab] || {};
+    incorrectAnswers[currentTab][correctAnswer] =
+      (incorrectAnswers[currentTab][correctAnswer] || 0) + 1;
   }
 
+  totalQuestions++;
   updateScore();
   setTimeout(() => {
-    if (quizType === "septWeek3") {
-      generateSeptWeek3Quiz();
-    } else if (quizType === "capitals") {
-      generateCapitalsQuiz();
-    } else if (quizType === "numbers") {
-      generateNumbersQuiz();
-    } else if (quizType === "phrases") {
-      generatePhrasesQuiz();
-    } else if (quizType === "words") {
-      generateWordsQuiz();
-    }
+    generateQuiz();
   }, 2000);
 }
 
