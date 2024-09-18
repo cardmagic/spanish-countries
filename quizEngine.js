@@ -137,58 +137,47 @@ function updateScore() {
   scoreElement.textContent = `Questions Answered: ${totalQuestions}, Correct: ${correctAnswers}, Accuracy: ${percentage}%`;
 }
 
-function handleOptionClick(
+export function handleOptionClick(
   button,
-  selectedOption,
-  correctOption,
-  category,
-  getHint
+  selectedAnswer,
+  correctAnswer,
+  quizType,
+  getHintFunction
 ) {
-  totalQuestions++;
-  if (selectedOption === correctOption) {
-    correctAnswers++;
-    button.classList.remove("bg-blue-500", "hover:bg-blue-700");
+  const options = document.querySelectorAll(".option-button");
+  options.forEach((opt) => (opt.disabled = true));
+
+  if (selectedAnswer === correctAnswer) {
     button.classList.add("bg-green-500");
-
-    if (currentQuestionAttempts === 0) {
-      showCongratulatoryGif().catch((error) => {
-        console.error("Error showing congratulatory GIF:", error);
-      });
-    }
-
-    setTimeout(() => {
-      button.classList.remove("bg-green-500");
-      button.classList.add("bg-blue-500", "hover:bg-blue-700");
-      if (correctAnswers % 20 === 0) {
-        sendIncorrectAnswers(category);
-      }
-      generateQuiz();
-    }, 3000);
+    score++;
+    playCorrectSound();
+    showGif("correct");
   } else {
-    currentQuestionAttempts++;
-    if (!incorrectAnswers[category]) {
-      incorrectAnswers[category] = {};
+    button.classList.add("bg-red-500");
+    const correctButton = Array.from(options).find(
+      (opt) => opt.textContent === correctAnswer
+    );
+    if (correctButton) {
+      correctButton.classList.add("bg-green-500");
     }
-    incorrectAnswers[category][correctOption] =
-      (incorrectAnswers[category][correctOption] || 0) + 1;
-
-    button.classList.remove("bg-blue-500", "hover:bg-blue-700");
-    button.classList.add("bg-red-500", "shake");
-    if ("vibrate" in navigator) {
-      navigator.vibrate(500);
-    }
-    setTimeout(() => {
-      button.classList.remove("bg-red-500", "shake");
-      button.classList.add("bg-blue-500", "hover:bg-blue-700");
-      button.disabled = true;
-    }, 1000);
-
-    const hint = getHint(correctOption);
-    if (hint) {
-      showHint(`Mnemonic: ${hint}`);
-    }
+    playIncorrectSound();
+    showGif("incorrect");
   }
+
   updateScore();
+  setTimeout(() => {
+    if (quizType === "septWeek3") {
+      generateSeptWeek3Quiz();
+    } else if (quizType === "capitals") {
+      generateCapitalsQuiz();
+    } else if (quizType === "numbers") {
+      generateNumbersQuiz();
+    } else if (quizType === "phrases") {
+      generatePhrasesQuiz();
+    } else if (quizType === "words") {
+      generateWordsQuiz();
+    }
+  }, 2000);
 }
 
 function showHint(hint) {
