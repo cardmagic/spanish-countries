@@ -28,7 +28,7 @@ const septWeek3Vocab = [
   {
     english: "woman",
     spanish: "la mujer",
-    spanish: "Moo-hair: Visualize a woman with cow-patterned hair",
+    mnemonic: "Moo-hair: Visualize a woman with cow-patterned hair",
   },
   {
     english: "boy",
