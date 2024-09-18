@@ -103,3 +103,9 @@ select:hover, button:hover {
         margin-right: 5px;
     }
 }
+
+/* Add this new rule for the Show Hint button */
+#show-hint-button, .show-hint-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
