@@ -27,25 +27,15 @@
 <body class="bg-gray-100 flex items-center justify-center h-screen">
     <div class="bg-white p-8 rounded shadow-md w-192">
         <h1 class="text-2xl font-bold mb-4 text-center">Spanish Language Quiz</h1>
-        <nav class="mb-4">
-            <ul class="flex border-b">
-                <li class="mr-1">
-                    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="septWeek3">Sept Week 3</a>
-                </li>
-                <li class="mr-1">
-                    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="capitals">Capitals</a>
-                </li>
-                <li class="mr-1">
-                    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="numbers">Numbers</a>
-                </li>
-                <li class="mr-1">
-                    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="phrases">Phrases</a>
-                </li>
-                <li class="mr-1">
-                    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#" data-tab="words">Words</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="mb-4">
+            <select id="quiz-selector" class="w-full p-2 border rounded">
+                <option value="septWeek3">Sept Week 3</option>
+                <option value="capitals">Capitals</option>
+                <option value="numbers">Numbers</option>
+                <option value="phrases">Phrases</option>
+                <option value="words">Words</option>
+            </select>
+        </div>
         <div id="quiz-container">
             <div id="question" class="text-xl mb-4"></div>
             <div id="options" class="space-y-2"></div>

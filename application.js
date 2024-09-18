@@ -5,19 +5,10 @@ import { generateWordsQuiz } from "./words.js";
 import { generateQuiz, initializeElements } from "./quizEngine.js";
 import { generateSeptWeek3Quiz } from "./septWeek3.js";
 
-let currentTab = "septWeek3"; // Change the default tab
+let currentTab = "septWeek3"; // Default quiz
 
-function switchTab(tab) {
-  currentTab = tab;
-  document.querySelectorAll("nav a").forEach((a) => {
-    a.classList.remove("text-blue-800", "border-b-2", "border-blue-500");
-    a.classList.add("text-blue-500");
-  });
-  document
-    .querySelector(`nav a[data-tab="${tab}"]`)
-    .classList.add("text-blue-800", "border-b-2", "border-blue-500");
-
-  // Generate a new quiz after changing the tab
+function switchQuiz(quiz) {
+  currentTab = quiz;
   generateQuiz();
 }
 
@@ -25,19 +16,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const questionElement = document.getElementById("question");
   const optionsElement = document.getElementById("options");
   const scoreElement = document.getElementById("score");
+  const quizSelector = document.getElementById("quiz-selector");
 
   initializeElements(questionElement, optionsElement, scoreElement);
 
-  generateQuiz();
-  document.querySelectorAll("nav a").forEach((a) => {
-    a.addEventListener("click", (e) => {
-      e.preventDefault();
-      switchTab(e.target.getAttribute("data-tab"));
-    });
+  quizSelector.addEventListener("change", (e) => {
+    switchQuiz(e.target.value);
   });
 
-  // Set the initial active tab
-  switchTab(currentTab);
+  generateQuiz();
 });
 
-export { currentTab, switchTab };
+export { currentTab, switchQuiz };
