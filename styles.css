@@ -1,13 +1,20 @@
 body {
     font-family: 'VT323', monospace;
-    background-image: url('https://i.imgur.com/SBWmVc5.png');
-    background-repeat: repeat;
     color: #ffffff;
+    background-color: #8B6244; /* Base dirt color */
+    background-image: 
+        linear-gradient(45deg, #75522D 25%, transparent 25%),
+        linear-gradient(-45deg, #75522D 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #75522D 75%),
+        linear-gradient(-45deg, transparent 75%, #75522D 75%);
+    background-size: 32px 32px;
+    background-position: 0 0, 0 16px, 16px -16px, -16px 0px;
 }
+
 .container {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8); /* Increased opacity for better contrast */
     border: 3px solid #545454;
-    box-shadow: inset 0 0 0 3px #000000;
+    box-shadow: inset 0 0 0 3px #000000, 0 0 10px rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 0;
 }
