@@ -321,19 +321,17 @@ function generatePhrasesQuiz() {
   optionsArray.forEach((option) => {
     const button = document.createElement("button");
     button.textContent = option;
-    button.className =
-      "w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700";
+    button.className = "w-full py-2 px-4 option-button text-white rounded";
     button.addEventListener("click", () =>
       handleOptionClick(button, option, correctAnswer, "phrases", getPhraseHint)
     );
     optionsElement.appendChild(button);
   });
 
-  // Add a hint button
+  // Update hint button
   const hintButton = document.createElement("button");
   hintButton.textContent = "Show Hint";
-  hintButton.className =
-    "w-full py-2 px-4 bg-yellow-500 text-white rounded hover:bg-yellow-700 mt-2";
+  hintButton.className = "mt-4 py-2 px-4 text-white rounded";
   hintButton.addEventListener("click", () => showHint(correctPhrase.mnemonic));
   optionsElement.appendChild(hintButton);
 

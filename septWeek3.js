@@ -250,7 +250,7 @@ function generateSeptWeek3Quiz() {
   hintButton.textContent = "Show Hint";
   hintButton.className = "mt-4 py-2 px-4 text-white rounded";
   hintButton.addEventListener("click", () =>
-    showHint(correctAnswer, getSeptWeek3Hint)
+    showHint(getSeptWeek3Hint(correctAnswer))
   );
   questionElement.appendChild(hintButton);
 
