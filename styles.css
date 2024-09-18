@@ -34,6 +34,7 @@ h1 {
 
 #question {
     font-size: 1.5rem; /* Increased question font size */
+    margin-bottom: 20px; /* Add margin to the bottom of the question */
 }
 
 select, button, .option-button {
@@ -104,10 +105,10 @@ select:hover, button:hover {
     }
 }
 
-/* Add this new rule for the Show Hint button */
+/* Update this rule for the Show Hint button */
 #show-hint-button, .show-hint-button {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .bg-green-500 {

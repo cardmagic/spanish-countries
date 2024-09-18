@@ -144,32 +144,27 @@ function handleOptionClick(
   quizType,
   getHintFunction
 ) {
-  const options = document.querySelectorAll(".option-button");
-  options.forEach((opt) => (opt.disabled = true));
-
   if (selectedAnswer === correctAnswer) {
     button.classList.add("bg-green-500");
     correctAnswers++;
     showCongratulatoryGif();
+    totalQuestions++;
+    updateScore();
+    setTimeout(() => {
+      generateQuiz();
+    }, 2000);
   } else {
     button.classList.add("bg-red-500");
-    const correctButton = Array.from(options).find(
-      (opt) => opt.textContent === correctAnswer
-    );
-    if (correctButton) {
-      correctButton.classList.add("bg-green-500");
-    }
     // Update incorrect answers count
     incorrectAnswers[currentTab] = incorrectAnswers[currentTab] || {};
     incorrectAnswers[currentTab][correctAnswer] =
       (incorrectAnswers[currentTab][correctAnswer] || 0) + 1;
-  }
 
-  totalQuestions++;
-  updateScore();
-  setTimeout(() => {
-    generateQuiz();
-  }, 2000);
+    // Remove the red background after a short delay
+    setTimeout(() => {
+      button.classList.remove("bg-red-500");
+    }, 500);
+  }
 }
 
 function showHint(hint) {
