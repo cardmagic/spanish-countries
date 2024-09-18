@@ -86,3 +86,11 @@ select:hover, button:hover {
 .w-192 {
     width: 48rem;
 }
+
+/* Add this media query at the end of the file */
+@media screen and (max-width: 600px) {
+    .container {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
