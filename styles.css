@@ -55,10 +55,10 @@ select:hover, button:hover {
 .option-button {
     background-color: #5c5c5c;
     border: 2px solid #424242;
-    padding: 10px 15px; /* Added vertical and horizontal padding */
-    margin-bottom: 10px; /* Added margin between buttons */
-    width: 100%; /* Make buttons full width */
-    text-align: left; /* Align text to the left */
+    padding: 10px 15px;
+    margin-bottom: 0; /* Remove this line */
+    width: 100%;
+    text-align: left;
 }
 
 .option-button:hover {
@@ -116,4 +116,11 @@ select:hover, button:hover {
     font-size: 0.9rem;
     padding: 5px;
     width: auto;
+}
+
+/* Add this new class */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* This creates equal spacing between buttons */
 }

@@ -178,8 +178,8 @@ function showHint(hint) {
     currentQuestionAttempts++;
     const hintElement = document.createElement("p");
     hintElement.textContent = hint;
-    hintElement.className = "mt-2 text-sm text-gray-600 italic";
-    optionsElement.appendChild(hintElement);
+    hintElement.className = "mt-2 text-gray-400 italic";
+    optionsElement.insertBefore(hintElement, optionsElement.firstChild);
     hintShown = true;
   }
 }
