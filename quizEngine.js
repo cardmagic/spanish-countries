@@ -141,41 +141,52 @@ function handleOptionClick(
   button,
   selectedAnswer,
   correctAnswer,
-  quizType,
-  getHintFunction
+  category,
+  getHint
 ) {
   // Remove the default background color class
-  button.classList.remove("bg-gray-500");
+  button.classList.remove("bg-gray-500", "hover:bg-gray-700");
 
   if (selectedAnswer === correctAnswer) {
-    button.classList.add("bg-green-500");
     correctAnswers++;
-    showCongratulatoryGif();
-    totalQuestions++;
-    updateScore();
+    button.classList.add("bg-green-500");
+
+    if (currentQuestionAttempts === 0) {
+      showCongratulatoryGif().catch((error) => {
+        console.error("Error showing congratulatory GIF:", error);
+      });
+    }
+
     setTimeout(() => {
       button.classList.remove("bg-green-500");
-      button.classList.add("bg-gray-500");
+      button.classList.add("bg-blue-500", "hover:bg-blue-700");
+      if (correctAnswers % 20 === 0) {
+        sendIncorrectAnswers(category);
+      }
       generateQuiz();
-    }, 1300);
+    }, 3000);
   } else {
-    button.classList.add("bg-red-500");
-    button.classList.add("shake");
-    // Update incorrect answers count
-    incorrectAnswers[currentTab] = incorrectAnswers[currentTab] || {};
-    incorrectAnswers[currentTab][correctAnswer] =
-      (incorrectAnswers[currentTab][correctAnswer] || 0) + 1;
+    currentQuestionAttempts++;
+    if (!incorrectAnswers[category]) {
+      incorrectAnswers[category] = {};
+    }
+    incorrectAnswers[category][correctAnswer] =
+      (incorrectAnswers[category][correctAnswer] || 0) + 1;
 
-    // Disable all buttons during the shake animation
-    const allButtons = optionsElement.querySelectorAll("button");
-    allButtons.forEach((btn) => (btn.disabled = true));
-
-    // Remove the red background and shake class, and re-enable buttons after the animation
+    button.classList.add("bg-red-500", "shake");
+    if ("vibrate" in navigator) {
+      navigator.vibrate(500);
+    }
     setTimeout(() => {
       button.classList.remove("bg-red-500", "shake");
-      button.classList.add("bg-gray-500");
-      allButtons.forEach((btn) => (btn.disabled = false));
-    }, 700);
+      button.classList.add("bg-gray-500", "hover:bg-gray-700");
+      button.disabled = true;
+    }, 1000);
+
+    const hint = getHint(correctOption);
+    if (hint) {
+      showHint(`Mnemonic: ${hint}`);
+    }
   }
 }
 

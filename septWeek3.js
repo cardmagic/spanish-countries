@@ -233,7 +233,7 @@ function generateSeptWeek3Quiz() {
     const button = document.createElement("button");
     button.textContent = option;
     button.className =
-      "w-full py-2 px-4 bg-gray-500 option-button text-white rounded";
+      "w-full py-2 px-4 bg-gray-500 option-button text-white rounded hover:bg-gray-700";
     button.addEventListener("click", () =>
       handleOptionClick(
         button,
