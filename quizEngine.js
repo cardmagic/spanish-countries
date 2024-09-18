@@ -144,6 +144,9 @@ function handleOptionClick(
   quizType,
   getHintFunction
 ) {
+  // Remove the default background color class
+  button.classList.remove("bg-gray-500");
+
   if (selectedAnswer === correctAnswer) {
     button.classList.add("bg-green-500");
     correctAnswers++;
@@ -151,6 +154,8 @@ function handleOptionClick(
     totalQuestions++;
     updateScore();
     setTimeout(() => {
+      button.classList.remove("bg-green-500");
+      button.classList.add("bg-gray-500");
       generateQuiz();
     }, 1300);
   } else {
@@ -168,6 +173,7 @@ function handleOptionClick(
     // Remove the red background and shake class, and re-enable buttons after the animation
     setTimeout(() => {
       button.classList.remove("bg-red-500", "shake");
+      button.classList.add("bg-gray-500");
       allButtons.forEach((btn) => (btn.disabled = false));
     }, 700);
   }
@@ -209,6 +215,7 @@ function getScoreElement() {
 function generateQuiz() {
   resetQuestionAttempts();
   createOrGetGifContainer(); // Ensure the gif container exists
+  setInitialButtonStyles(); // Add this line
   switch (currentTab) {
     case "septWeek3":
       generateSeptWeek3Quiz();
@@ -243,6 +250,11 @@ function createOrGetGifContainer() {
 function resetQuestionAttempts() {
   currentQuestionAttempts = 0;
   hintShown = false;
+}
+
+function setInitialButtonStyles() {
+  const allButtons = document.querySelectorAll("button");
+  allButtons.forEach((btn) => btn.classList.add("bg-gray-500"));
 }
 
 export {
