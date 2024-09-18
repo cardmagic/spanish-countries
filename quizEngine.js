@@ -144,6 +144,8 @@ function handleOptionClick(
   category,
   getHint
 ) {
+  totalQuestions++;
+
   // Remove the default background color class
   button.classList.remove("bg-gray-500", "hover:bg-gray-700");
 
