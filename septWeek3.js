@@ -232,8 +232,7 @@ function generateSeptWeek3Quiz() {
   optionsArray.forEach((option) => {
     const button = document.createElement("button");
     button.textContent = option;
-    button.className =
-      "w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700";
+    button.className = "w-full py-2 px-4 option-button text-white rounded";
     button.addEventListener("click", () =>
       handleOptionClick(
         button,
@@ -249,8 +248,7 @@ function generateSeptWeek3Quiz() {
   // Add hint button
   const hintButton = document.createElement("button");
   hintButton.textContent = "Show Hint";
-  hintButton.className =
-    "mt-4 py-2 px-4 bg-green-500 text-white rounded hover:bg-green-700";
+  hintButton.className = "mt-4 py-2 px-4 text-white rounded";
   hintButton.addEventListener("click", () =>
     showHint(correctAnswer, getSeptWeek3Hint)
   );

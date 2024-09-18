@@ -3,9 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Country Capital Quiz</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Minecraft Spanish Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
+        body {
+            font-family: 'VT323', monospace;
+            background-image: url('https://i.imgur.com/SBWmVc5.png');
+            background-repeat: repeat;
+            color: #ffffff;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 3px solid #545454;
+            box-shadow: inset 0 0 0 3px #000000;
+            padding: 20px;
+            border-radius: 0;
+        }
+        h1 {
+            text-shadow: 2px 2px #000000;
+        }
+        select, button {
+            font-family: 'VT323', monospace;
+            background-color: #8b8b8b;
+            border: 2px solid #545454;
+            color: #ffffff;
+            text-shadow: 1px 1px #000000;
+            cursor: pointer;
+        }
+        select:hover, button:hover {
+            background-color: #a8a8a8;
+        }
+        .option-button {
+            background-color: #5c5c5c;
+            border: 2px solid #424242;
+        }
+        .option-button:hover {
+            background-color: #6e6e6e;
+        }
+        #score {
+            background-color: #4a4a4a;
+            border: 2px solid #363636;
+            padding: 10px;
+            margin-top: 20px;
+        }
         .hidden {
             display: none;
         }
@@ -24,11 +64,11 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-    <div class="bg-white p-8 rounded shadow-md w-192">
-        <h1 class="text-2xl font-bold mb-4 text-center">Spanish Language Quiz</h1>
+<body class="flex items-center justify-center h-screen">
+    <div class="container w-192">
+        <h1 class="text-2xl font-bold mb-4 text-center">Minecraft Spanish Quiz</h1>
         <div class="mb-4">
-            <select id="quiz-selector" class="w-full p-2 border rounded">
+            <select id="quiz-selector" class="w-full p-2 rounded">
                 <option value="septWeek3">Sept Week 3</option>
                 <option value="capitals">Capitals</option>
                 <option value="numbers">Numbers</option>
