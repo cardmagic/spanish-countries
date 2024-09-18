@@ -151,6 +151,11 @@ function handleOptionClick(
     correctAnswers++;
     button.classList.add("bg-green-500");
 
+    // Change container background to green
+    const container = document.querySelector(".container");
+    container.classList.remove("bg-black");
+    container.classList.add("bg-green-800");
+
     if (currentQuestionAttempts === 0) {
       showCongratulatoryGif().catch((error) => {
         console.error("Error showing congratulatory GIF:", error);
@@ -160,6 +165,11 @@ function handleOptionClick(
     setTimeout(() => {
       button.classList.remove("bg-green-500");
       button.classList.add("bg-gray-500", "hover:bg-gray-700");
+
+      // Change container background back to black
+      container.classList.remove("bg-green-800");
+      container.classList.add("bg-black");
+
       if (correctAnswers % 20 === 0) {
         sendIncorrectAnswers(category);
       }
