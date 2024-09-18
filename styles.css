@@ -53,10 +53,19 @@ select:hover, button:hover {
 .option-button {
     background-color: #5c5c5c;
     border: 2px solid #424242;
+    padding: 10px 15px; /* Added vertical and horizontal padding */
+    margin-bottom: 10px; /* Added margin between buttons */
+    width: 100%; /* Make buttons full width */
+    text-align: left; /* Align text to the left */
 }
 
 .option-button:hover {
     background-color: #6e6e6e;
+}
+
+/* Add this to ensure proper spacing for the last button */
+.option-button:last-child {
+    margin-bottom: 0;
 }
 
 #score {
