@@ -31,6 +31,7 @@ body {
 h1 {
     text-shadow: 2px 2px #000000;
     font-size: 2.5rem; /* Increased heading size */
+    margin-right: 1rem; /* Add some space between the title and the dropdown */
 }
 
 #question {
@@ -114,6 +115,7 @@ select:hover, button:hover {
     font-size: 0.9rem;
     padding: 5px;
     width: auto;
+    flex-shrink: 0; /* Prevent the dropdown from shrinking */
 }
 
 /* Add this new class */
@@ -121,4 +123,20 @@ select:hover, button:hover {
     display: flex;
     flex-direction: column;
     gap: 10px; /* This creates equal spacing between buttons */
+}
+
+/* Add this media query for responsiveness */
+@media screen and (max-width: 600px) {
+    .container > div:first-child {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    h1 {
+        margin-bottom: 0.5rem;
+    }
+
+    #quiz-selector {
+        width: 100%;
+    }
 }
