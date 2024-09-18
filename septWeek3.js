@@ -246,6 +246,16 @@ function generateSeptWeek3Quiz() {
     optionsElement.appendChild(button);
   });
 
+  // Add hint button
+  const hintButton = document.createElement("button");
+  hintButton.textContent = "Show Hint";
+  hintButton.className =
+    "mt-4 py-2 px-4 bg-green-500 text-white rounded hover:bg-green-700";
+  hintButton.addEventListener("click", () =>
+    showHint(correctAnswer, getSeptWeek3Hint)
+  );
+  questionElement.appendChild(hintButton);
+
   updateScore();
 }
 
