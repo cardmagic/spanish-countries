@@ -110,11 +110,3 @@ select:hover, button:hover {
     margin-top: 15px;
     margin-bottom: 15px;
 }
-
-.bg-green-500 {
-    background-color: #10B981;
-}
-
-.bg-red-500 {
-    background-color: #EF4444;
-}
