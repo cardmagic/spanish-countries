@@ -3,6 +3,7 @@ import { generateNumbersQuiz } from "./numbers.js";
 import { generatePhrasesQuiz } from "./phrases.js";
 import { generateWordsQuiz } from "./words.js"; // Add this line
 import { generateSeptWeek3Quiz } from "./septWeek3.js";
+import { generateSeptWeek4Quiz } from "./septWeek4.js";
 import { currentTab } from "./application.js";
 
 let totalQuestions = 0;
@@ -237,9 +238,12 @@ function getScoreElement() {
 
 function generateQuiz() {
   resetQuestionAttempts();
-  createOrGetGifContainer(); // Ensure the gif container exists
-  setInitialButtonStyles(); // Add this line
+  createOrGetGifContainer();
+  setInitialButtonStyles();
   switch (currentTab) {
+    case "septWeek4":
+      generateSeptWeek4Quiz();
+      break;
     case "septWeek3":
       generateSeptWeek3Quiz();
       break;

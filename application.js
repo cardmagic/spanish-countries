@@ -4,8 +4,9 @@ import { generatePhrasesQuiz } from "./phrases.js";
 import { generateWordsQuiz } from "./words.js";
 import { generateQuiz, initializeElements } from "./quizEngine.js";
 import { generateSeptWeek3Quiz } from "./septWeek3.js";
+import { generateSeptWeek4Quiz } from "./septWeek4.js";
 
-let currentTab = "septWeek3"; // Default quiz
+let currentTab = "septWeek4"; // New default quiz
 
 function switchQuiz(quiz) {
   currentTab = quiz;
