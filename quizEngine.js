@@ -5,6 +5,7 @@ import { generateWordsQuiz } from "./words.js"; // Add this line
 import { generateSeptWeek3Quiz } from "./septWeek3.js";
 import { generateSeptWeek4Quiz } from "./septWeek4.js";
 import { generateOctWeek4Quiz } from "./octWeek4.js";
+import { generateNovWeek1Quiz } from "./novWeek1.js";
 import { currentTab } from "./application.js";
 
 let totalQuestions = 0;
@@ -262,6 +263,9 @@ function generateQuiz() {
       break;
     case "octWeek4":
       generateOctWeek4Quiz();
+      break;
+    case "novWeek1":
+      generateNovWeek1Quiz();
       break;
   }
 }
