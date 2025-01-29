@@ -10,8 +10,9 @@ import { generateNovWeek1Quiz } from "./novWeek1.js";
 import { generateDecWeek1Quiz } from "./decWeek1.js";
 import { generateDecWeek2Quiz } from "./decWeek2.js";
 import { generateJanWeek3Quiz } from "./janWeek3.js";
+import { generateJanWeek4Quiz } from "./janWeek4.js";
 
-let currentTab = "janWeek3"; // New default quiz
+let currentTab = "janWeek4"; // New default quiz
 
 function switchQuiz(quiz) {
   currentTab = quiz;
