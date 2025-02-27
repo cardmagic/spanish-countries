@@ -11,6 +11,7 @@ import { generateDecWeek2Quiz } from "./decWeek2.js";
 import { currentTab } from "./application.js";
 import { generateJanWeek3Quiz } from "./janWeek3.js";
 import { generateJanWeek4Quiz } from "./janWeek4.js";
+import { generateFebWeek4Quiz } from "./febWeek4.js";
 
 let totalQuestions = 0;
 let correctAnswers = 0;
@@ -247,6 +248,9 @@ function generateQuiz() {
   createOrGetGifContainer();
   setInitialButtonStyles();
   switch (currentTab) {
+    case "febWeek4":
+      generateFebWeek4Quiz();
+      break;
     case "janWeek4":
       generateJanWeek4Quiz();
       break;
